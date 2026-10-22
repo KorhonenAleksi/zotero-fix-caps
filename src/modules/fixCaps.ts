@@ -2,14 +2,17 @@ import { fixCreator, fixTitle } from "../core/casing";
 import { getString } from "../utils/locale";
 
 const MENU_ID = "fixcaps-item-menu";
+// Zotero may namespace the ID; keep the one it returns for unregistering.
+let registeredMenuID: string | false = false;
 
 export function registerItemMenu() {
-  Zotero.MenuManager.registerMenu({
+  // No separator: Zotero groups plugin items under its own separator and
+  // rejects the whole registration if a top-level separator is included.
+  registeredMenuID = Zotero.MenuManager.registerMenu({
     menuID: MENU_ID,
     pluginID: addon.data.config.addonID,
     target: "main/library/item",
     menus: [
-      { menuType: "separator" },
       {
         menuType: "menuitem",
         l10nID: `${addon.data.config.addonRef}-menuitem-fix-caps`,
@@ -19,10 +22,14 @@ export function registerItemMenu() {
       },
     ],
   });
+  if (!registeredMenuID) {
+    Zotero.logError(new Error("Fix Caps: item menu registration was rejected"));
+  }
 }
 
 export function unregisterItemMenu() {
-  Zotero.MenuManager.unregisterMenu(MENU_ID);
+  if (registeredMenuID) Zotero.MenuManager.unregisterMenu(registeredMenuID);
+  registeredMenuID = false;
 }
 
 async function fixItems(selected: Zotero.Item[]) {
