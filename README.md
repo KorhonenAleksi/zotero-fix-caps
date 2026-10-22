@@ -51,8 +51,9 @@ Download the `.xpi` from the
 [releases](https://github.com/KorhonenAleksi/zotero-fix-caps/releases), then in
 Zotero: Tools → Plugins → gear icon → Install Plugin From File…
 
-The plugin ID `fixcaps@aleksi.zotero` is unchanged from the 1.x versions, so
-installing 2.x replaces an older install in place.
+2.0 uses a new plugin ID (`fixcaps@korhonenaleksi.github.io`; 1.x was
+`fixcaps@aleksi.zotero`), so Zotero treats it as a separate plugin. Remove a 1.x
+install first, or you get two Fix Caps menu items.
 
 ## Development
 

@@ -5,7 +5,7 @@
   "description": "Right-click fix for ALL-CAPS and sentence-case titles and ALL-CAPS author names in Zotero",
   "config": {
     "addonName": "Zotero Fix Caps",
-    "addonID": "fixcaps@aleksi.zotero",
+    "addonID": "fixcaps@korhonenaleksi.github.io",
     "addonRef": "fixcaps",
     "addonInstance": "FixCaps",
     "prefsPrefix": "extensions.zotero.fixcaps"
