@@ -113,6 +113,30 @@ describe("fixTitle", () => {
     expect(fixTitle(undefined)).toBeNull();
   });
 
+  it("removes SAGE's EXPRESS: accepted-manuscript label", () => {
+    expect(
+      fixTitle(
+        "EXPRESS: Forced Choices without Resolutions: A Dialectical View of Strategic Change in an Endgame Industry",
+      ),
+    ).toBe(
+      "Forced Choices without Resolutions: A Dialectical View of Strategic Change in an Endgame Industry",
+    );
+    expect(
+      fixTitle(
+        "EXPRESS: Sustaining collective strategy through cross-level leadership: Microdynamics of managing paradoxical tensions",
+      ),
+    ).toBe(
+      "Sustaining Collective Strategy Through Cross-Level Leadership: Microdynamics of Managing Paradoxical Tensions",
+    );
+    expect(fixTitle("EXPRESS: FORCED CHOICES WITHOUT RESOLUTIONS")).toBe(
+      "Forced Choices without Resolutions",
+    );
+  });
+
+  it("keeps a real title that starts with Express", () => {
+    expect(fixTitle("Express: A History of Overnight Delivery")).toBeNull();
+  });
+
   it("returns the re-cased title otherwise", () => {
     expect(fixTitle("ORGANIZATIONAL IDENTITY")).toBe("Organizational Identity");
     expect(fixTitle("Strategy as practice")).toBe("Strategy as Practice");

@@ -97,9 +97,7 @@ async function fixItems(selected: Zotero.Item[]) {
   // The gecko typings mark these constants optional; they always exist.
   const flags =
     ps.BUTTON_POS_0! * ps.BUTTON_TITLE_IS_STRING! +
-    ps.BUTTON_POS_1! * ps.BUTTON_TITLE_CANCEL! +
-    // Cancel is the default button, so Enter never changes anything by accident
-    ps.BUTTON_POS_1_DEFAULT!;
+    ps.BUTTON_POS_1! * ps.BUTTON_TITLE_CANCEL!;
   const choice = ps.confirmEx(
     Zotero.getMainWindow() as unknown as mozIDOMWindowProxy,
     getString("fix-caps-confirm-title"),

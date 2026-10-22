@@ -15,6 +15,10 @@ the item key and the old and new value, so any change can be reverted by hand.
 
 ## What it changes
 
+**"EXPRESS:" labels.** SAGE prefixes accepted manuscripts with `EXPRESS:`
+(`EXPRESS: Forced Choices without Resolutions…`). The label is not part of the
+title and is removed.
+
 **Titles**, when they are
 
 - entirely upper-case (`ORGANIZATIONAL IDENTITY` → `Organizational Identity`), or

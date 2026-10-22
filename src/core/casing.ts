@@ -259,10 +259,25 @@ export function shouldRewriteTitle(str: string | null | undefined): boolean {
   return isAllCaps(str) || looksLikeSentenceCase(str);
 }
 
-/** The re-cased title, or null when the title should be left as it is. */
+// Publication-status labels that publishers prepend to the title of
+// not-yet-final articles; they are not part of the title. SAGE marks
+// accepted manuscripts "EXPRESS: …". Upper-case only, so a real title
+// beginning "Express: …" is left alone.
+const STATUS_PREFIX = /^EXPRESS:\s*/;
+
+/** The title without a publisher status label such as "EXPRESS:". */
+export function stripStatusPrefix(title: string): string {
+  return title.replace(STATUS_PREFIX, "");
+}
+
+/**
+ * The cleaned and re-cased title, or null when the title should be left as
+ * it is.
+ */
 export function fixTitle(title: string | null | undefined): string | null {
-  if (!title || !shouldRewriteTitle(title)) return null;
-  const next = toTitleCase(title);
+  if (!title) return null;
+  const stripped = stripStatusPrefix(title);
+  const next = shouldRewriteTitle(stripped) ? toTitleCase(stripped) : stripped;
   return next === title ? null : next;
 }
 
