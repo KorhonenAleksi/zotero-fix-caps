@@ -1,0 +1,15 @@
+{
+    "manifest_version": 2,
+    "name": "Zotero Fix Caps",
+    "version": "1.3.3",
+    "description": "Adds a right-click 'Fix Caps' option that normalizes ALL-CAPS and sentence-case titles and author names for selected items.",
+    "author": "Aleksi",
+    "applications": {
+        "zotero": {
+            "id": "fixcaps@aleksi.zotero",
+            "update_url": "https://invalid.local/updates.json",
+            "strict_min_version": "7.0",
+            "strict_max_version": "99.*"
+        }
+    }
+}
