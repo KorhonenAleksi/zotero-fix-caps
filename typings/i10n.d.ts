@@ -3,5 +3,10 @@
 /* eslint-disable */
 // @ts-nocheck
 export type FluentMessageId =
+  | 'fix-caps-confirm-button'
+  | 'fix-caps-confirm-intro'
+  | 'fix-caps-confirm-note'
+  | 'fix-caps-confirm-title'
+  | 'fix-caps-none'
   | 'fix-caps-result'
   | 'menuitem-fix-caps';

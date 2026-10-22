@@ -1,2 +1,2 @@
 menuitem-fix-caps =
-    .label = Fix Caps (title & authors)
+    .label = Fix Caps (title & authors)…

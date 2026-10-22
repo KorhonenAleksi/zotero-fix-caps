@@ -4,9 +4,14 @@ A Zotero 9/10 plugin that fixes inconsistent casing on selected items in one
 right-click: ALL-CAPS and sentence-case titles become title case, and ALL-CAPS
 author names become proper case.
 
-Select items, right-click, and pick **Fix Caps (title & authors)**. A pop-up
-reports how many items, titles and names changed. Only fields that match the
-rules below are touched, so it is safe to run on a whole collection.
+Select items (Cmd/Ctrl+A for a whole collection or library), right-click, and
+pick **Fix Caps (title & authors)…**. A dialog lists the changes (old → new)
+before anything is saved; Cancel is the default button. Only fields that match
+the rules below are touched.
+
+Every change is first appended to `fix-caps-log.csv` in your Zotero data
+folder (Settings → Advanced → Files and Folders → Show Data Directory), with
+the item key and the old and new value, so any change can be reverted by hand.
 
 ## What it changes
 
@@ -47,9 +52,14 @@ whatever capitals they already have (`DNA`, `U.S.`).
 
 ## Install
 
-Download the `.xpi` from the
-[releases](https://github.com/KorhonenAleksi/zotero-fix-caps/releases), then in
-Zotero: Tools → Plugins → gear icon → Install Plugin From File…
+Requires Zotero 9 or 10.
+
+1. Download `zotero-fix-caps.xpi` from the latest
+   [release](https://github.com/KorhonenAleksi/zotero-fix-caps/releases/latest).
+2. In Zotero: Tools → Plugins → gear icon → Install Plugin From File…, and
+   pick the downloaded file.
+
+Zotero checks for new versions automatically.
 
 2.0 uses a new plugin ID (`fixcaps@korhonenaleksi.github.io`; 1.x was
 `fixcaps@aleksi.zotero`), so Zotero treats it as a separate plugin. Remove a 1.x
@@ -62,6 +72,8 @@ npm install
 npm test            # unit tests for the pure core (src/core), runs in Node
 npm run build       # → build/zotero-fix-caps.xpi
 npm start           # hot-reload into a separate dev Zotero profile (needs .env, see .env.example)
+npm run release     # bump the version, tag and push; GitHub Actions then
+                    # publishes the release and update.json
 ```
 
 Layout: `src/core/casing.ts` holds all casing rules as pure TypeScript with no
